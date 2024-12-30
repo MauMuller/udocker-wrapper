@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 standartError="Please check before try to install again!\n"
 gitError="\n[git] didnt found.\n$standartError"
 pythonError="\n[python] didnt find or is with version minor than 3.x.x.\n$standartError"

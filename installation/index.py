@@ -14,7 +14,19 @@ def executePython (values):
 
 def executeShell (values):
     for command in values or []:
-        subprocess.run(command.split(" "), text = True)
+        output = subprocess.run(
+                command, 
+                capture_output=True, 
+                shell=True, 
+                text=True
+        )
+
+        if output.stderr:
+            print(f"\n{output.stderr}")
+            exit()
+
+        if output.stdout.replace("\n", "").strip():
+            print(f"\n{output.stdout}")
 try:
     f = Formatters()
     path = os.path.realpath(os.path.dirname(__file__))

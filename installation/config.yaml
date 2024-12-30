@@ -1,0 +1,73 @@
+start:
+  shell-commands:
+    - clear 
+  messages:
+    - "Hello Everyone, Welcome to Udocker Wrapper :)"
+    - "_____________________________________________"
+steps:
+  - question: "What type plataform/os are you using?"
+    key: "question-1"
+    observation: "'Linux' can be any distribuitions"
+    options:
+      list:
+        - name: "Linux/Distros"
+          key: "distributions"
+
+        - name: "Android/Termux"
+          key: "termux"
+
+  - question: "Where do you want to install project folder?"
+    key: "question-2"
+    observation: "These folders will use your plataform to create relatives directories"
+    options:
+      dependsOn: "question-1"
+      list:
+        - name: "$HOME/.udocker"
+          key: "home"
+          values: 
+            - key: "distributions"
+              python-commands:
+                - print('DISTROS')
+              shell-commands:
+                - echo "HOME"
+
+            - key: "termux"
+              python-commands:
+                - print('TERMUX')
+              shell-commands:
+                - echo "HOME"
+
+        - name: "/opt/udocker"
+          key: "opt"
+          values: 
+            - key: "distributions"
+              python-commands:
+                - print('DISTROS')
+              shell-commands:
+                - echo "OPT"
+
+            - key: "termux"
+              python-commands:
+                - print('TERMUX')
+              shell-commands:
+                - echo "OPT"
+
+        - name: "/usr/lib/python{version}/site-packages/udocker"
+          key: "usr-lib"
+          values: 
+            - key: "distributions"
+              python-commands:
+                - print('DISTROS')
+              shell-commands:
+                - echo "USR-LIB"
+
+            - key: "termux"
+              python-commands:
+                - print('TERMUX')
+              shell-commands:
+                - echo "]USR-LIB"
+end:
+  shell-commands:
+  messages:
+    - "Everything was ok!"
+    - "Thanks for use this Wrapper :D"

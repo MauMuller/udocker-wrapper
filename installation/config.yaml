@@ -19,6 +19,12 @@ steps:
   - question: "Where do you want to install project folder?"
     key: "question-2"
     observation: "These folders will use your plataform to create relatives directories"
+    globals:
+      variables:
+        - key: "EDITORES-EXEMPLES"
+          values: 
+            - "Now put theses lines into your source file."
+            - "Ex: [~/.bashrc] [~/.zshrc] [~/.config/fish/config.fish]"
     options:
       dependsOn: "question-1"
       list:
@@ -35,7 +41,7 @@ steps:
               python-commands:
                 - print('TERMUX')
               shell-commands:
-                - echo "HOME"
+                - echo "$EDITORES-EXEMPLES"
 
         - name: "/opt/udocker"
           key: "opt"

@@ -12,10 +12,21 @@ def executePython (values):
     for command in values or []:
         result = exec(command)
 
-def executeShell (values):
+def executeShell (values, globalVariables = []):
     for command in values or []:
+        refinedCommand = command
+        
+        for variables in globalVariables:
+            key = variables.get('key') or []
+            globalList = variables.get('values') or []
+
+            if not key or len(globalList) == 0:
+                continue
+
+            refinedCommand = command.replace(f"${key}", "\n".join(globalList))
+
         output = subprocess.run(
-                command, 
+                refinedCommand, 
                 capture_output=True, 
                 shell=True, 
                 text=True
@@ -51,6 +62,9 @@ try:
         keyStep = step.get('key')
         question = step.get('question')
         observation = step.get('observation')
+        
+        globalValues = step.get('globals') or {}
+        globalVariables = globalValues.get('variables') or []
 
         keysAndValuesOptions = list(enumerate(optionsList))
         possibleOptions = list(map(lambda item: str(item[0] + 1), keysAndValuesOptions))
@@ -105,7 +119,7 @@ try:
         questions[keyStep] = option.get('key')
         
         executePython(pythonCommands)
-        executeShell(shellCommands)
+        executeShell(shellCommands, globalVariables)
 
     messages = "\n".join(end['messages'])
     print(f"\n{f.BOLD}{messages}{f.ENDC}")

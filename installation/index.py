@@ -33,11 +33,11 @@ def executeShell (values, globalVariables = []):
         )
 
         if output.stderr:
-            print(f"\n{output.stderr}")
+            print(f"{output.stderr}")
             exit()
 
         if output.stdout.replace("\n", "").strip():
-            print(f"\n{output.stdout}")
+            print(f"{output.stdout}")
 try:
     f = Formatters()
     path = os.path.realpath(os.path.dirname(__file__))
@@ -72,7 +72,7 @@ try:
         stopLoop = False
 
         while not stopLoop:
-            print(f"\n- {f.BOLD}{question}{f.ENDC}")
+            print(f"- {f.BOLD}{question}{f.ENDC}")
             print(f"{f.TABS}{f.ITALIC}{f.OKCYAN}{observation}{f.ENDC}\n")
 
             for index, option in keysAndValuesOptions:
@@ -117,6 +117,8 @@ try:
             pythonCommands = option.get('python-commands') or []
 
         questions[keyStep] = option.get('key')
+
+        print("\n")
         
         executePython(pythonCommands)
         executeShell(shellCommands, globalVariables)

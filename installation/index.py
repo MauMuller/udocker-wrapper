@@ -63,6 +63,8 @@ try:
         question = step.get('question')
         observation = step.get('observation')
         
+        stepPythonCommands = step.get('python-commands') or []
+
         globalValues = step.get('globals') or {}
         globalVariables = globalValues.get('variables') or []
 
@@ -120,6 +122,9 @@ try:
 
         print("\n")
         
+        if len(stepPythonCommands): 
+            executePython(stepPythonCommands)
+
         executePython(pythonCommands)
         executeShell(shellCommands, globalVariables)
 

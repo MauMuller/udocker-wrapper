@@ -19,6 +19,8 @@ steps:
   - question: "Where do you want to install project folder?"
     key: "question-2"
     observation: "These folders will use your plataform to create relatives directories"
+    python-commands:
+      - "if os.environ.get('HOME'):\n\traise ValueError('Didnt possible to find $HOME environment variable')"
     globals:
       variables:
         - key: "PATH-TO-UDOCKER"

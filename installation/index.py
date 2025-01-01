@@ -132,10 +132,10 @@ try:
     print(f"\n{f.BOLD}{messages}{f.ENDC}")
 
     executeShell(end.get('shell-commands'))
-except KeyboardInterrupt:
-    print('\nTerminal was interupted')
 except ValueError as error:
-    print(f"\nSomething was wrong, error: \n{error}")
+    print(f"Something was wrong, error:\n{error}.\n")
+except KeyboardInterrupt:
+    print(f"Terminal was interupted.\n")
 except SyntaxError as error:
     line = error.lineno
-    print(f"\nSyntax Error, line: {line}")
+    print(f"Syntax Error, line: {line}.\n")

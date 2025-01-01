@@ -21,10 +21,12 @@ steps:
     observation: "These folders will use your plataform to create relatives directories"
     globals:
       variables:
-        - key: "EDITORES-EXEMPLES"
+        - key: "PATH-TO-UDOCKER"
+          values:
+            - "Now put these lines into your source file if you want to use udocker on restart"
+        - key: "SOURCE-FILE"
           values: 
-            - "Now put theses lines into your source file."
-            - "Ex: [~/.bashrc] [~/.zshrc] [~/.config/fish/config.fish]"
+            - "source $HOME/[.bashrc or .zshrc, .config/fish/config.fish]"
     options:
       dependsOn: "question-1"
       list:
@@ -41,8 +43,10 @@ steps:
               python-commands:
                 - print('TERMUX')
               shell-commands:
-                - echo "$EDITORES-EXEMPLES"
-
+                - echo '
+                    $PATH-TO-UDOCKER\n
+                    \t> export PATH="$PATH:$HOME/udocker/udocker/udocker"\n
+                    \t> $SOURCE-FILE'
         - name: "/opt/udocker"
           key: "opt"
           values: 

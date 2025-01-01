@@ -25,7 +25,7 @@ steps:
       variables:
         - key: "PATH-TO-UDOCKER"
           values:
-            - "Now put these lines into your source file if you want to use udocker on restart"
+            - "if you want to use udocker on restart, put these lines into your source file"
         - key: "SOURCE-FILE"
           values: 
             - "source $HOME/[.bashrc or .zshrc, .config/fish/config.fish]"
@@ -70,5 +70,5 @@ end:
   messages:
     - "Everything was ok."
     - "To use, just type: udocker [commands]"
-    - "\nToo now you can delete this installation folder."
+    - "\nAlso now you can delete this installation folder."
     - "Just type: rm -rf ../udocker-wrapper\n"

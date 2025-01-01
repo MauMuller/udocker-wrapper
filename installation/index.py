@@ -23,7 +23,7 @@ def executeShell (values, globalVariables = []):
             if not key or len(globalList) == 0:
                 continue
 
-            refinedCommand = command.replace(f"${key}", "\n".join(globalList))
+            refinedCommand = refinedCommand.replace(f"${key}", "\n".join(globalList))
 
         output = subprocess.run(
                 refinedCommand, 

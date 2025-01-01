@@ -20,6 +20,3 @@ if [ -z "$(curl --version 2> /dev/null)" ] && [ -z "$(wget --version 2> /dev/nul
 fi
 
 python ./installation/index.py
-
-echo "\nNow you can delete this installation folder."
-echo "Just type: rm -r ../udocker-wrapper"

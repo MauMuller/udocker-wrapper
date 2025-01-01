@@ -75,5 +75,7 @@ steps:
 end:
   shell-commands:
   messages:
-    - "Everything was ok!"
-    - "Thanks for use this Wrapper :D"
+    - "Everything was ok."
+    - "To use, just type: udocker [commands]"
+    - "\nToo now you can delete this installation folder."
+    - "Just type: rm -rf ../udocker-wrapper\n"

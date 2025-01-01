@@ -9,13 +9,17 @@ import urllib.request
 from classes.Formatters import Formatters
 
 def executePython (values):
-    for command in values or []:
+    filtredValues = list(filter(lambda v: v, values or []))
+
+    for command in filtredValues:
         result = exec(command)
 
 def executeShell (values, globalVariables = []):
-    for command in values or []:
-        refinedCommand = command
-        
+    filtredValues = list(filter(lambda v: v, values or []))
+    
+    for command in filtredValues:
+        refinedCommand = command or ""
+
         for variables in globalVariables:
             key = variables.get('key') or []
             globalList = variables.get('values') or []
@@ -24,6 +28,9 @@ def executeShell (values, globalVariables = []):
                 continue
 
             refinedCommand = refinedCommand.replace(f"${key}", "\n".join(globalList))
+
+        if not refinedCommand:
+            raise ValueError(f"Shell command is empty")
 
         output = subprocess.run(
                 refinedCommand, 

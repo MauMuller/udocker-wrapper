@@ -34,14 +34,10 @@ steps:
           key: "home"
           values: 
             - key: "distributions"
-              python-commands:
-                - print('DISTROS')
               shell-commands:
                 - echo "HOME"
 
             - key: "termux"
-              python-commands:
-                - print('TERMUX')
               shell-commands:
                 - echo '
                     $PATH-TO-UDOCKER\n
@@ -51,14 +47,10 @@ steps:
           key: "opt"
           values: 
             - key: "distributions"
-              python-commands:
-                - print('DISTROS')
               shell-commands:
                 - echo "OPT"
 
             - key: "termux"
-              python-commands:
-                - print('TERMUX')
               shell-commands:
                 - echo "OPT"
 
@@ -66,18 +58,13 @@ steps:
           key: "usr-lib"
           values: 
             - key: "distributions"
-              python-commands:
-                - print('DISTROS')
               shell-commands:
                 - echo "USR-LIB"
 
             - key: "termux"
-              python-commands:
-                - print('TERMUX')
               shell-commands:
                 - echo "]USR-LIB"
 end:
-  shell-commands:
   messages:
     - "Everything was ok."
     - "To use, just type: udocker [commands]"

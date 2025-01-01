@@ -40,8 +40,7 @@ def executeShell (values, globalVariables = []):
         )
 
         if output.stderr:
-            print(f"{output.stderr}")
-            exit()
+            raise ValueError(f"{output.stderr}")
 
         if output.stdout.replace("\n", "").strip():
             print(f"{output.stdout}")

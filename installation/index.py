@@ -29,9 +29,6 @@ def executeShell (values, globalVariables = []):
 
             refinedCommand = refinedCommand.replace(f"${key}", "\n".join(globalList))
 
-        if not refinedCommand:
-            raise ValueError(f"Shell command is empty")
-
         output = subprocess.run(
                 refinedCommand, 
                 capture_output=True, 
@@ -39,7 +36,7 @@ def executeShell (values, globalVariables = []):
                 text=True
         )
 
-        if output.stderr:
+        if output.stderr.replace("\n", "").strip():
             raise ValueError(f"{output.stderr}")
 
         if output.stdout.replace("\n", "").strip():
@@ -139,7 +136,7 @@ try:
 
     executeShell(end.get('shell-commands'))
 except ValueError as error:
-    print(f"Something was wrong, error:\n{error}.\n")
+    print(f"Something was wrong, error:\n{error}\n")
 except KeyboardInterrupt:
     print(f"Terminal was interupted.\n")
 except SyntaxError as error:
